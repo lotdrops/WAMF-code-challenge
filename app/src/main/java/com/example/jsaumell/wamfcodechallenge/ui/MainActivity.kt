@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        PhotographerListFragment.newInstance().navigate(LIST_FRAGMENT_TAG, true)
+        PhotographerListFragment.newInstance().navigate(LIST_FRAGMENT_TAG, false)
 
         sharedViewModel.photographerSelectedEvent.observe(this, Observer {
             PhotographerDetailFragment.newInstance(it).navigate(DETAIL_FRAGMENT_TAG, true) })

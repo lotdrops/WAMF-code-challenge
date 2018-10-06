@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jsaumell.wamfcodechallenge.R
+import com.example.jsaumell.wamfcodechallenge.ui.SharedViewModel
 import com.example.jsaumell.wamfcodechallenge.ui.model.Photographer
 import com.example.jsaumell.wamfcodechallenge.ui.photographerdetail.PhotographerDetailViewModel.Companion.STATE_ERROR
 import com.example.jsaumell.wamfcodechallenge.ui.photographerdetail.PhotographerDetailViewModel.Companion.STATE_LOADED
@@ -15,11 +16,13 @@ import com.example.jsaumell.wamfcodechallenge.ui.photographerdetail.Photographer
 import kotlinx.android.synthetic.main.photographer_detail_fragment.*
 import kotlinx.android.synthetic.main.photographer_detail_fragment.view.*
 import org.koin.android.ext.android.setProperty
+import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class PhotographerDetailFragment : Fragment() {
 
     private val viewModel: PhotographerDetailViewModel by viewModel()
+    private val sharedViewModel: SharedViewModel by sharedViewModel()
     private var photographer: Photographer? = null
 
     override fun onCreateView(
@@ -42,6 +45,11 @@ class PhotographerDetailFragment : Fragment() {
         subscribeUi(photoInfoAdapter)
 
         return view
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.onDetailOpened()
     }
 
     private fun subscribeUi(adapter: PhotographerDetailRecyclerViewAdapter) {
@@ -79,7 +87,6 @@ class PhotographerDetailFragment : Fragment() {
     }
 
     private fun setupPhotographerInfo() {
-        name.text = photographer?.name
         username.text = photographer?.username
         address.text = getString(R.string.photographer_detail_address, photographer?.city, photographer?.zipcode)
         phone.text = photographer?.phone

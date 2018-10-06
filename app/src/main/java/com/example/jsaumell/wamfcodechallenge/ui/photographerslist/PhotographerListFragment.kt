@@ -48,6 +48,11 @@ class PhotographerListFragment : Fragment(), BaseAdapter.OnItemClickListener<Pho
         return view
     }
 
+    override fun onResume() {
+        super.onResume()
+        sharedViewModel.onListOpened()
+    }
+
     private fun subscribeUi(adapter: PhotographerListRecyclerViewAdapter) {
         viewModel.photographerList.observe(this, Observer { photographerList ->
             Log.d("phlist", "list observed, size: ${photographerList.size}")

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">WAMF code challenge</string>
+
+    <string name="error_could_not_load_content">Content could not be loaded</string>
+
+    <string name="photographer_detail_address">%1$s, ZIP Code: %2$s</string>
+
+</resources>

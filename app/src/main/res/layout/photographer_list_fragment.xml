@@ -1,34 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/list"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.photographerslist.PhotographerListFragment">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.core.widget.ContentLoadingProgressBar
-        android:id="@+id/progressBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="true"
-        style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.jsaumell.wamfcodechallenge.ui.photographerslist.PhotographerListViewModel"/>
+    </data>
 
-    <TextView
-        android:id="@+id/errorTextView"
+    <FrameLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        style="@style/LoadingErrorTextStyle"
-        android:text="@string/error_could_not_load_content"/>
+        tools:context=".ui.photographerslist.PhotographerListFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="top"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        tools:listitem="@layout/photographer_list_element" />
+        <androidx.core.widget.ContentLoadingProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.state == viewModel.STATE_LOADING ? View.VISIBLE : View.GONE}"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            style="@style/LoadingErrorTextStyle"
+            android:visibility="@{viewModel.state == viewModel.STATE_ERROR ? View.VISIBLE : View.GONE}"
+            android:text="@string/error_could_not_load_content"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:visibility="@{viewModel.state == viewModel.STATE_LOADED ? View.VISIBLE : View.GONE}"
+            tools:listitem="@layout/photographer_list_element" />
 
 
-</FrameLayout>
+    </FrameLayout>
+</layout>

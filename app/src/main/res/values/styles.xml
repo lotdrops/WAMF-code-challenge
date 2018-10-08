@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="PhotographDetailTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/dark_text_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_marginStart">8dp</item>
+        <item name="android:layout_marginEnd">8dp</item>
+        <item name="android:layout_marginTop">@dimen/default_margin_up_down</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin_up_down</item>
+    </style>
+
+    <style name="PhotographDetailCatchphraseTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textColor">@color/dark_text_color</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginStart">@dimen/default_margin_side</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin_side</item>
+        <item name="android:layout_marginTop">@dimen/default_margin_up_down</item>
+        <item name="android:layout_marginBottom">@dimen/default_margin_up_down</item>
+    </style>
+
+    <style name="PhotographDetailUsernameTextStyle" parent="@android:style/TextAppearance">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textColor">@color/dark_text_color</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_marginStart">@dimen/default_margin_side</item>
+        <item name="android:layout_marginEnd">@dimen/default_margin_side</item>
+        <item name="android:layout_marginTop">@dimen/default_margin_up_down</item>
+    </style>
+
+    <style name="LoadingErrorTextStyle" parent="@style/TextAppearance.AppCompat.Headline">
+    </style>
+
+</resources>

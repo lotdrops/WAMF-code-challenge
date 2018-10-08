@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.example.jsaumell.wamfcodechallenge.ui.photographerdetail.PhotographerDetailViewModel"/>
+    </data>
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.photographerdetail.PhotographerDetailFragment">
+
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            style="@style/PhotographDetailUsernameTextStyle"/>
+
+        <TextView
+            android:id="@+id/catchphrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/PhotographDetailCatchphraseTextStyle"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margin_side"
+            android:layout_marginEnd="@dimen/default_margin_side"
+            android:layout_marginTop="@dimen/default_margin_up_down"
+            android:layout_marginBottom="@dimen/default_margin_up_down"
+            android:background="@drawable/outline_rounded_corners"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_location_on_24px"
+                style="@style/PhotographDetailTextStyle"/>
+
+            <TextView
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_outline_phone_24px"
+                style="@style/PhotographDetailTextStyle"/>
+
+            <TextView
+                android:id="@+id/website"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_baseline_web_24px"
+                style="@style/PhotographDetailTextStyle"/>
+
+        </LinearLayout>
+
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:indeterminate="true"
+                android:visibility="@{viewModel.state == viewModel.STATE_LOADING ? View.VISIBLE : View.GONE}"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+
+            <TextView
+                android:id="@+id/errorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                style="@style/LoadingErrorTextStyle"
+                android:visibility="@{viewModel.state == viewModel.STATE_ERROR ? View.VISIBLE : View.GONE}"
+                android:text="@string/error_could_not_load_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="top"
+                android:visibility="@{viewModel.state == viewModel.STATE_LOADED ? View.VISIBLE : View.GONE}"
+                tools:listitem="@layout/photo_element" />
+
+
+        </FrameLayout>
+
+
+    </LinearLayout>
+</layout>

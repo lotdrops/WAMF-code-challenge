@@ -22,7 +22,8 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         toolbar.setNavigationOnClickListener { onBackPressed() }
 
-        PhotographerListFragment.newInstance().navigate(LIST_FRAGMENT_TAG, false)
+        if (savedInstanceState == null) PhotographerListFragment.newInstance()
+                .navigate(LIST_FRAGMENT_TAG, false)
 
         sharedViewModel.photographerSelectedEvent.observe(this, Observer {
             PhotographerDetailFragment.newInstance(it).navigate(DETAIL_FRAGMENT_TAG, true) })

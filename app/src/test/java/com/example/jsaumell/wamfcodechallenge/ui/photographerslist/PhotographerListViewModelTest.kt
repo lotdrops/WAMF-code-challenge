@@ -68,6 +68,7 @@ class PhotographerListViewModelTest {
         viewModel.state.observeForever(stateObserver)
 
         assert(viewModel.state.value == PhotographerListViewModel.STATE_LOADING)
+        Mockito.verify(repo, Mockito.times(1)).getPhotographersList(viewModel)
     }
 
     @Test

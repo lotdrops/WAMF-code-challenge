@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class PhotographersRepositoryImpl : PhotographersRepository {
 
     private val retrofit: Retrofit = Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com/")
+            .baseUrl(URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -30,5 +30,9 @@ class PhotographersRepositoryImpl : PhotographersRepository {
                 { r -> photosListener?.onListReady(r.body()) },
                 { photosListener?.onListError() }
         ))
+    }
+
+    companion object {
+        const val URL = "https://jsonplaceholder.typicode.com/"
     }
 }

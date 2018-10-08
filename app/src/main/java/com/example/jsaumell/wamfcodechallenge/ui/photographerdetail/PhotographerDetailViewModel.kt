@@ -12,7 +12,7 @@ class PhotographerDetailViewModel internal constructor(
     photographer: Photographer?
 ) : ViewModel(), PhotographersRepository.PhotosListCallback {
 
-    private val photoInfoList = MediatorLiveData<List<PhotoInfo>>()
+    val photoInfoList = MediatorLiveData<List<PhotoInfo>>()
     private val viewList = MutableLiveData<ArrayList<PhotoInfo>>()
     val state = MutableLiveData<Int>()
 
@@ -37,8 +37,6 @@ class PhotographerDetailViewModel internal constructor(
     }
 
     override fun onListError() { state.postValue(STATE_ERROR) }
-
-    fun getPhotoInfo() = photoInfoList
 
     companion object {
         const val STATE_LOADING = 0

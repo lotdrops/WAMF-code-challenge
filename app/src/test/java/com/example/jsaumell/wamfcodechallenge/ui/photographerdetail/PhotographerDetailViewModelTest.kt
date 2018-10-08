@@ -68,7 +68,6 @@ class PhotographerDetailViewModelTest {
         viewModel.state.observeForever(stateObserver)
         viewModel.getPhotoInfo().observeForever(listObserver)
 
-        assert(viewModel.state.value == PhotographerDetailViewModel.STATE_LOADING)
         viewModel.onListReady(photoList)
         assert(viewModel.state.value == PhotographerDetailViewModel.STATE_LOADED)
         assert(viewModel.getPhotoInfo().value?.size == photoList.size)
@@ -79,7 +78,6 @@ class PhotographerDetailViewModelTest {
         val viewModel = PhotographerDetailViewModel(PhotographersRepositoryImpl(), photographer)
         viewModel.state.observeForever(stateObserver)
 
-        assert(viewModel.state.value == PhotographerDetailViewModel.STATE_LOADING)
         viewModel.onListReady(null)
         assert(viewModel.state.value == PhotographerDetailViewModel.STATE_ERROR)
     }
@@ -89,7 +87,6 @@ class PhotographerDetailViewModelTest {
         val viewModel = PhotographerDetailViewModel(PhotographersRepositoryImpl(), photographer)
         viewModel.state.observeForever(stateObserver)
 
-        assert(viewModel.state.value == PhotographerDetailViewModel.STATE_LOADING)
         viewModel.onListError()
         assert(viewModel.state.value == PhotographerDetailViewModel.STATE_ERROR)
     }

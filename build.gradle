@@ -12,8 +12,10 @@ buildscript {
     ext.gson_converter_version = '2.1.0'
     ext.glide_version = '4.8.0'
     ext.junit_version = '4.12'
+    ext.mockito_version = '1.10.19'
     ext.test_runner_version = '1.1.0-alpha4'
     ext.espresso_version = '3.1.0-alpha4'
+    ext.lifecycle_version = '2.0.0'
 
 
     repositories {

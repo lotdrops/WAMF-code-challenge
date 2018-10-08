@@ -66,11 +66,11 @@ class PhotographerDetailViewModelTest {
     fun onListReady_correctList() {
         val viewModel = PhotographerDetailViewModel(PhotographersRepositoryImpl(), photographer)
         viewModel.state.observeForever(stateObserver)
-        viewModel.getPhotoInfo().observeForever(listObserver)
+        viewModel.photoInfoList.observeForever(listObserver)
 
         viewModel.onListReady(photoList)
         assert(viewModel.state.value == PhotographerDetailViewModel.STATE_LOADED)
-        assert(viewModel.getPhotoInfo().value?.size == photoList.size)
+        assert(viewModel.photoInfoList.value?.size == photoList.size)
     }
 
     @Test

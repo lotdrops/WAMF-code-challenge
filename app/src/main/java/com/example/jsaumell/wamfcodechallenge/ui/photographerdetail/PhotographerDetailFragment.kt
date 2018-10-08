@@ -11,6 +11,7 @@ import com.example.jsaumell.wamfcodechallenge.R
 import com.example.jsaumell.wamfcodechallenge.databinding.PhotographerDetailFragmentBinding
 import com.example.jsaumell.wamfcodechallenge.ui.SharedViewModel
 import com.example.jsaumell.wamfcodechallenge.ui.model.Photographer
+import com.example.jsaumell.wamfcodechallenge.utils.Constants.Companion.KOIN_PROPERTY_PHOTOGRAPHER
 import kotlinx.android.synthetic.main.photographer_detail_fragment.*
 import org.koin.android.ext.android.setProperty
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
@@ -31,7 +32,7 @@ class PhotographerDetailFragment : Fragment() {
         val context = context ?: return binding.root
 
         photographer = arguments?.getParcelable(PHOTOGRAPHER_KEY)
-        photographer?.let { setProperty("photographer", photographer!!) }
+        photographer?.let { setProperty(KOIN_PROPERTY_PHOTOGRAPHER, photographer!!) }
 
         binding.setLifecycleOwner(this)
         binding.viewModel = viewModel
@@ -52,7 +53,7 @@ class PhotographerDetailFragment : Fragment() {
     }
 
     private fun subscribeUi(adapter: PhotographerDetailRecyclerViewAdapter) {
-        viewModel.getPhotoInfo().observe(this, Observer { photoInfoList ->
+        viewModel.photoInfoList.observe(this, Observer { photoInfoList ->
             photoInfoList?.let(adapter::submitList)
         })
     }
